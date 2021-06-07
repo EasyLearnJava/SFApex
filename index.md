@@ -7,7 +7,7 @@
 Trigger simpleTrigger on Account (after insert) {
     //works well
     for (Account a : Trigger.new) {
-        // Iterate over each Case
+        // Iterate over each Account
     }
 }
 ```
