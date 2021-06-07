@@ -66,7 +66,6 @@ public class AccountTriggerHandler
 {
     public void onAfterInsert()
     {
-        `RED`
         `//will not compile`
         for(Account a: Trigger.new)
         {
@@ -90,8 +89,11 @@ for(Account accRec :accLst){
     if(null != accRec.Business_DUNS_Number__c)
         DunsLst.add(accRec.Business_DUNS_Number__c);
 }    
-        List<Company__c> cLst = [select id, DUNS__c, Account__c from Company__c where DUNS__c in :DUNSLst];    
+List<Company__c> cLst = [select id, DUNS__c, Account__c from Company__c where DUNS__c in :DUNSLst];    
 ```    
+
+## Get records to MAP in SOQL
+    
     
 You can use the [editor on GitHub](https://github.com/EasyLearnJava/SFApex/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
