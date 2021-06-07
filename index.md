@@ -1,6 +1,6 @@
 ## Welcome to APEX 
 
--- Should we tyecast Trigger.new to get a specific set of objects ?
+## Should we tyecast Trigger.new to get a specific set of objects ?
 
 **Scenario 1:** Trigger.New in Trigger, which works well as it is implicitly type casted to specific object, here is Account.
 ```
@@ -66,6 +66,7 @@ public class AccountTriggerHandler
 {
     public void onAfterInsert()
     {
+        `RED`
         `//will not compile`
         for(Account a: Trigger.new)
         {
@@ -73,6 +74,23 @@ public class AccountTriggerHandler
         }
     }
 }
+```    
+
+## Get List of records in SOQL
+```
+//Using trigger.new directly in IN clause
+List<Account> accLst = [select id, name from Account where id in :(Trigger.new)];
+
+//Using Trigger.newMap directly in IN clause    
+List<Account> accList = [select id, name from Account where id in :(Trigger.newMap).keyset()];
+
+//Using a custom List in IN Clause
+List<Account> accLst = Trigger.new;    
+for(Account accRec :accLst){
+    if(null != accRec.Business_DUNS_Number__c)
+        DunsLst.add(accRec.Business_DUNS_Number__c);
+}    
+        List<Company__c> cLst = [select id, DUNS__c, Account__c from Company__c where DUNS__c in :DUNSLst];    
 ```    
     
 You can use the [editor on GitHub](https://github.com/EasyLearnJava/SFApex/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
