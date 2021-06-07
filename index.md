@@ -1,5 +1,16 @@
-## Welcome to GitHub Pages
+## Welcome to APEX 
 
+-- Should we tyecast Trigger.new to get a specific set of objects ?
+
+Scenario 1: Trigger.New in Trigger, which works well as it is implicitly type casted to specific object, here is Account
+```
+Trigger simpleTrigger on Account (after insert) {
+    //works well
+    for (Account a : Trigger.new) {
+        // Iterate over each Case
+    }
+}
+```
 You can use the [editor on GitHub](https://github.com/EasyLearnJava/SFApex/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
