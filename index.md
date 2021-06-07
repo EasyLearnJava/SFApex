@@ -108,6 +108,10 @@ Syntax highlighted code block
 
 https://jsonplaceholder.typicode.com/
 https://www.gitpod.io/
+
+https://phuston.github.io/patrickandfrantonarethebestninjas/howto    
+https://borealblizzard.github.io/
+https://github.com/BorealBlizzard/BorealBlizzard.github.io
     
 # Header 1
 ## Header 2
