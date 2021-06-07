@@ -2,7 +2,7 @@
 
 -- Should we tyecast Trigger.new to get a specific set of objects ?
 
-Scenario 1: Trigger.New in Trigger, which works well as it is implicitly type casted to specific object, here is Account
+**Scenario 1:** Trigger.New in Trigger, which works well as it is implicitly type casted to specific object, here is Account.
 ```
 Trigger simpleTrigger on Account (after insert) {
     //works well
@@ -11,6 +11,70 @@ Trigger simpleTrigger on Account (after insert) {
     }
 }
 ```
+
+**Scenario 2:** In the Trigger handler class and in a specific method, we are receiving specific list List<Account> as an argument, and trying to loop through the specific object.
+```
+public class AccountTriggerHandler
+{   
+    public void onAfterInsert(List<Account> oldList, List<Account> newList)
+    {
+        //this works fine
+        for(Account a:newList)
+        {
+
+        }
+    }   
+}
+```
+
+**Scenario 3:** In a method, directly accessing Trigger.new which actually returns list of SObject. So, following code will works well.
+```
+public class AccountTriggerHandler
+{
+    public void onAfterInsert()
+    {
+        //works well
+        for(SObject a:Trigger.new)
+        {
+            if(a instanceOf Account)
+            {
+                Account accObj = (Account) a;
+            }
+        }
+    }
+}
+```
+    
+**Scenario 4:** Type casting Trigger.new to list of Account.
+```
+public class AccountTriggerHandler
+{
+    public void onAfterInsert()
+    {
+        //works well
+        for(Account a: (List<Account>)Trigger.new)
+        {
+
+        }
+    }
+}
+```
+    
+**Scenario 5:** Directly accessing Trigger.new without type casting to specific object.
+```
+public class AccountTriggerHandler
+{
+    public void onAfterInsert()
+    {
+        //will not compile
+        for(Account a: Trigger.new)
+        {
+
+        }
+    }
+}
+```    
+    
 You can use the [editor on GitHub](https://github.com/EasyLearnJava/SFApex/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
